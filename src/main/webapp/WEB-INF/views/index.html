@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+<body>
+<h3>Products</h3>
+<p>
+    <a th:href="@{/create}">
+        Add new customer
+    </a>
+</p>
+
+<table id = "products">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Producer</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row,iterStat : ${products}" th:class="${iterStat.odd}? 'odd'">
+        <td th:text="${row.id}"></td>
+        <td th:text="${row.name}"></td>
+        <td th:text="${row.price}"></td>
+        <td th:text="${row.producer}"></td>
+        <td><a th:href="@{/product/__${row.id}__/edit(id=${row.id})}">edit</a></td>
+        <td><a th:href="@{/product/__${row.id}__/delete(id=${row.id})}">delete</a></td>
+        <td><a th:href="@{/product/__${row.id}__/view(id=${row.id})}">view</a></td>
+    </tr>
+    </tbody>
+</table>
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>
